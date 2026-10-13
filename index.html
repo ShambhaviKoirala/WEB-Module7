@@ -1,0 +1,60 @@
+<!DOCTYPE html>                                                         
+<html lang="en">                                                         
+<head>                                                         
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">                                                         
+  <title>Rock Paper Scissors: Beat Robo!</title>                                                         
+  <link rel="preconnect" href="https://fonts.googleapis.com">                                                         
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>                                                         
+  <link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=DM+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>                                                         
+<body>                                                         
+  <div id="bg" aria-hidden="true"></div>                                                         
+  <main class="game">                                                         
+    <h1>Rock Paper Scissors</h1>                                                         
+                                                         
+    <div class="settings">
+      <select id="rounds" aria-label="Match length">                                                         
+        <option value="3">Best of 3</option>                                                         
+        <option value="5" selected>Best of 5</option>                                                         
+        <option value="7">Best of 7</option>                                                         
+      </select>
+      <select id="mode" aria-label="Game mode">                                                         
+        <option value="classic">Classic (3 moves)</option>
+        <option value="spicy">Spicy (5 moves)</option>
+      </select>                                                         
+      <button id="reset" type="button">New game</button>
+      <button id="sound" class="tool" type="button" aria-label="Toggle sound">🔊</button>
+    </div>
+                                                         
+    <section class="scoreboard" aria-live="polite">
+      <div class="score you"><span class="label">You</span><span id="player-score">0</span></div>
+      <div class="score tie"><span class="label">Ties</span><span id="tie-score">0</span></div>
+      <div class="score cpu"><span class="label">Robo</span><span id="computer-score">0</span></div>
+    </section>
+                                                         
+    <div class="tracker">
+      <div id="pips" class="pips" aria-label="Round history"></div>
+      <div id="streak" class="streak" hidden></div>
+    </div>
+                                                         
+    <section class="arena">
+      <div class="hand" id="player-hand"><span class="emoji">❔</span><span class="who">You</span></div>
+      <div class="vs">VS</div>
+      <div class="hand" id="computer-hand"><span class="emoji">❔</span><span class="who">🤖 Robo</span></div>
+    </section>                                                         
+                                                         
+    <p id="robo" class="robo">Robo: "Ready to lose?"</p>
+    <p id="message" class="message" aria-live="polite">Pick a move to start round 1.</p>
+
+    <section id="choices" class="choices" aria-label="Choose your move"></section>
+
+    <section class="record">
+      <h2>Your record</h2>
+      <p>Matches won <strong id="matches-won">0</strong> Matches lost <strong id="matches-lost">0</strong> Best win streak <strong id="best-streak">0</strong></p>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>                                                         

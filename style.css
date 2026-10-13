@@ -1,0 +1,222 @@
+:root {
+  --sky: #cfe6f2;
+  --navy: #14213d;
+  --pink: #e83f6f;
+  --sun: #ffc93c;
+  --teal: #1b998b;
+  --white: #ffffff;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--sky);
+  color: var(--navy);
+  font-family: "DM Sans", system-ui, sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 24px 16px;
+}
+.game { width: 100%; max-width: 640px; text-align: center; }
+h1 {
+  font-family: "Bowlby One", Impact, sans-serif;
+  font-weight: 400;
+  font-size: clamp(2rem, 8vw, 3.4rem);
+  line-height: 1;
+  margin: 0 0 20px;
+  text-shadow: 3px 3px 0 var(--sun);
+}
+h2 { font-size: 1.1rem; margin: 0 0 6px; }
+
+.settings { display: flex; gap: 10px; justify-content: center; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
+select, #reset {
+  font: inherit; font-weight: 600; color: var(--navy);
+  border: 3px solid var(--navy); border-radius: 10px;
+  background: var(--white); padding: 8px 12px; cursor: pointer;
+}
+#reset { background: var(--sun); }
+#reset:hover { background: var(--white); }
+
+.scoreboard { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+.score {
+  background: var(--white); border: 3px solid var(--navy); border-radius: 14px;
+  padding: 10px; display: flex; flex-direction: column;
+}
+.score .label { font-weight: 600; font-size: 0.95rem; }
+.score span:last-child { font-family: "Bowlby One", Impact, sans-serif; font-size: 2.2rem; }
+.score.you span:last-child { color: var(--teal); }
+.score.cpu span:last-child { color: var(--pink); }
+.score.bump span:last-child { animation: bump 0.4s ease; }
+@keyframes bump { 50% { transform: scale(1.5); } }
+
+.arena { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 12px; }
+.hand {
+  width: 150px; height: 160px; background: var(--white);
+  border: 4px solid var(--navy); border-radius: 18px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.hand .emoji { font-size: 4rem; }
+.hand .who { font-size: 0.85rem; font-weight: 600; }
+.hand.win { background: var(--teal); box-shadow: 0 0 0 6px var(--sun); color: var(--white); }
+.hand.lose { opacity: 0.55; }
+.hand.draw { background: var(--sun); }
+.hand.shake .emoji { animation: shake 0.5s ease; }
+@keyframes shake {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-20deg) translateY(-10px); }
+  75% { transform: rotate(20deg) translateY(-10px); }
+}
+.vs { font-family: "Bowlby One", Impact, sans-serif; font-size: 1.4rem; }
+
+.message { min-height: 2.6em; font-size: 1.15rem; font-weight: 600; margin: 8px 0 16px; }
+.message.final { font-family: "Bowlby One", Impact, sans-serif; font-weight: 400; font-size: 1.6rem; color: var(--pink); }
+
+.choices { display: flex; gap: 12px; justify-content: center; margin-bottom: 28px; }
+.choice {
+  font: inherit; font-weight: 600; color: var(--navy);
+  flex: 1; max-width: 170px; padding: 14px 8px;
+  background: var(--white); border: 4px solid var(--navy); border-radius: 16px;
+  cursor: pointer; box-shadow: 0 6px 0 var(--navy);
+  transition: transform 0.1s, box-shadow 0.1s, background 0.15s;
+}
+.choice .emoji { display: block; font-size: 2.6rem; }
+.choice:hover:not(:disabled) { background: var(--sun); }
+.choice:active:not(:disabled) { transform: translateY(6px); box-shadow: 0 0 0 var(--navy); }
+.choice:disabled { opacity: 0.4; cursor: not-allowed; }
+
+button:focus-visible, select:focus-visible { outline: 4px solid var(--pink); outline-offset: 3px; }                                                             
+
+.record { background: var(--white); border: 3px solid var(--navy); border-radius: 14px; padding: 12px; }
+.record p { margin: 0; }
+
+@media (max-width: 480px) {                                                             
+  .hand { width: 110px; height: 130px; }                                        
+  .hand .emoji { font-size: 3rem; }
+}                                                               
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }                                        
+}                                                       
+::selection { background: var(--pink); color: var(--white); }
+
+body {
+  background-color: var(--sky);
+  background-image: radial-gradient(rgba(20, 33, 61, 0.14) 2px, transparent 2px);
+  background-size: 26px 26px;
+}                                               
+
+.game {
+  background: rgba(255, 255, 255, 0.55);                                            
+  border: 4px solid var(--navy);
+  border-radius: 28px;
+  box-shadow: 10px 10px 0 var(--navy);                                      
+  padding: 28px 22px 24px;                                                                  
+  align-self: flex-start;
+}                                           
+
+h1 { animation: drop-in 0.7s cubic-bezier(0.3, 1.6, 0.5, 1) both; }
+@keyframes drop-in {                                            
+  from { transform: translateY(-60px) rotate(-4deg); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+.score, .record { box-shadow: 4px 4px 0 var(--navy); }
+.hand { box-shadow: 5px 5px 0 var(--navy); }                                    
+.hand.win { box-shadow: 0 0 0 6px var(--sun), 5px 5px 0 6px var(--navy); }
+
+.score { border-top-width: 10px; }
+.score.you { border-top-color: var(--teal); }
+.score.cpu { border-top-color: var(--pink); }
+.score.tie { border-top-color: var(--sun); }
+                      
+.hand:not(.win):not(.lose):not(.draw) .emoji { animation: bob 1.6s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(-8px); } }
+
+.choice[data-choice="rock"]:hover:not(:disabled) { background: var(--teal); color: var(--white); }
+.choice[data-choice="paper"]:hover:not(:disabled) { background: var(--sun); }
+.choice[data-choice="scissors"]:hover:not(:disabled) { background: var(--pink); color: var(--white); }
+.choice:hover:not(:disabled) { transform: translateY(-3px); box-shadow: 0 9px 0 var(--navy); }
+.choice:active:not(:disabled) { transform: translateY(6px); box-shadow: 0 0 0 var(--navy); }
+
+.message {
+  background: var(--white);
+  border: 3px solid var(--navy);                      
+  border-radius: 14px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;                      
+  justify-content: center;
+}                      
+.message.final {
+  background: var(--sun);                      
+  color: var(--navy);                      
+  animation: pop 0.6s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+@keyframes pop { from { transform: scale(0.6); opacity: 0; } to { transform: none; opacity: 1; } }
+
+select {
+  appearance: none;
+  padding-right: 34px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9'><path d='M1 1l6 6 6-6' fill='none' stroke='%2314213d' stroke-width='2.5'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+.settings label { font-weight: 600; }
+#reset { box-shadow: 3px 3px 0 var(--navy); }
+#reset:active { transform: translate(3px, 3px); box-shadow: none; }
+
+.record h2 { font-family: "Bowlby One", Impact, sans-serif; font-weight: 400; }
+.record strong {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 0 6px;
+  background: var(--sun);
+  border: 2px solid var(--navy);
+  border-radius: 8px;
+}
+
+@media (max-width: 480px) {
+  .game { padding: 20px 12px; box-shadow: 6px 6px 0 var(--navy); }
+  .arena { gap: 8px; }
+  .choices { gap: 8px; }
+}
+:root { --grape: #7b5cff; --blue: #2d7dd2; }
+body { position: relative; overflow-x: hidden; }
+.game { position: relative; z-index: 1; }
+
+#bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+#bg span { position: absolute; bottom: -80px; opacity: 0.35; animation: float-up linear infinite; }
+@keyframes float-up {
+  to { transform: translateY(-115vh) rotate(360deg); }
+}
+
+.tool { font-size: 1.1rem; padding: 6px 10px; border: 3px solid var(--navy); border-radius: 10px; background: var(--white); cursor: pointer; box-shadow: 3px 3px 0 var(--navy); }
+.choice[data-choice="lizard"]:hover:not(:disabled) { background: var(--grape); color: var(--white); }
+.choice[data-choice="spock"]:hover:not(:disabled) { background: var(--blue); color: var(--white); }
+.choices { flex-wrap: wrap; }
+.choice { flex: 1 1 90px; }
+
+.tracker { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; min-height: 34px; margin-bottom: 14px; }
+.pips { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.pip { width: 28px; height: 28px; border-radius: 50%; border: 3px solid var(--navy); font-size: 0.75rem; font-weight: 600; display: grid; place-items: center; animation: pop 0.4s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.pip.w { background: var(--teal); color: var(--white); }
+.pip.l { background: var(--pink); color: var(--white); }
+.pip.t { background: var(--sun); }
+.streak { background: var(--sun); border: 3px solid var(--navy); border-radius: 999px; padding: 4px 12px; font-weight: 600; animation: wiggle 0.6s ease-in-out infinite alternate; }
+.streak[hidden] { display: none; }
+@keyframes wiggle { from { transform: rotate(-4deg) scale(1); } to { transform: rotate(4deg) scale(1.08); } }
+
+.hand.shuffling { animation: wobble 0.3s linear infinite, flash 0.6s steps(1) infinite; }
+@keyframes wobble { 25% { transform: rotate(-6deg) translateY(-6px); } 75% { transform: rotate(6deg) translateY(-6px); } }
+@keyframes flash { 0% { background: var(--sun); } 33% { background: var(--pink); } 66% { background: var(--teal); } }
+.hand.win .emoji { animation: victory 0.8s ease; }
+@keyframes victory { 40% { transform: scale(1.5) rotate(-12deg); } 70% { transform: scale(1.2) rotate(8deg); } }
+
+.robo { display: inline-block; position: relative; margin: 4px 0 10px; padding: 6px 14px; background: var(--navy); color: var(--white); border-radius: 14px; font-size: 0.95rem; font-weight: 600; }
+.robo::before { content: ""; position: absolute; top: -9px; left: 50%; margin-left: -8px; border: 8px solid transparent; border-top: 0; border-bottom-color: var(--navy); }
+
+.screen-shake .game { animation: screen-shake 0.4s; }
+@keyframes screen-shake { 20% { transform: translate(-8px, 3px) rotate(-1deg); } 40% { transform: translate(8px, -3px) rotate(1deg); } 60% { transform: translate(-6px, 2px); } 80% { transform: translate(6px, -2px); } }
+
+.confetti { position: fixed; top: -14px; width: 10px; height: 16px; z-index: 10; pointer-events: none; animation: confetti-fall linear forwards; }
+@keyframes confetti-fall { to { transform: translateY(110vh) rotate(var(--spin)); } }
